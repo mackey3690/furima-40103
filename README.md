@@ -50,14 +50,17 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many   :shippings
+- has_many :shippings
 
 ## shippings テーブル
 
-| Column             | Type      | Option                          |
-| ------------------ | --------- | ------------------------------- |
-| user(FK)           | references | null: false, foreign_key: true |
-| item(FK)           | references | null: false, foreign_key: true |
+| Column             | Type       | Option                         |
+| ------------------ | ---------- | ------------------------------ |
+| postcode           | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| municipalities     | string     | null: false                    |
+| housenumber        | string     | null: false                    |
+| building           | string     | null: false                    |
 | purchases(FK)      | references | null: false, foreign_key: true |
 
 ### Association
