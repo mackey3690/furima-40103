@@ -17,7 +17,6 @@
 
 - has_many :items
 - has_many :purchases
-- has_one  :shipping
 
 ## items テーブル
 
@@ -37,7 +36,6 @@
 
 - belongs_to :user
 - has_one    :purchase
-- has_one    :shipping
 
 ## purchases テーブル
 
@@ -50,7 +48,7 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_many :shippings
+- has_one :shipping
 
 ## shippings テーブル
 
@@ -60,11 +58,11 @@
 | prefecture_id      | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
 | housenumber        | string     | null: false                    |
-| building           | string     | null: false                    |
+| building           | string     |                                |
+| phonenumber        | string     | null: false                    |
 | purchases(FK)      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+
 - belongs_to :purchase
