@@ -60,7 +60,7 @@
 | housenumber        | string     | null: false                    |
 | building           | string     |                                |
 | phonenumber        | string     | null: false                    |
-| purchases(FK)      | references | null: false, foreign_key: true |
+| purchase(FK)       | references | null: false, foreign_key: true |
 
 ### Association
 
