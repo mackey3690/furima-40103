@@ -54,12 +54,12 @@
 
 | Column             | Type       | Option                         |
 | ------------------ | ---------- | ------------------------------ |
-| postcode           | string     | null: false                    |
+| post_code           | string     | null: false                    |
 | prefecture_id      | integer    | null: false                    |
 | municipalities     | string     | null: false                    |
-| housenumber        | string     | null: false                    |
+| house_number       | string     | null: false                    |
 | building           | string     |                                |
-| phonenumber        | string     | null: false                    |
+| phone_number       | string     | null: false                    |
 | purchase(FK)       | references | null: false, foreign_key: true |
 
 ### Association
