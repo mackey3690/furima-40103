@@ -7,7 +7,6 @@ RSpec.describe ShippingPurchase, type: :model do
     @shipping_purchase = FactoryBot.build(:shipping_purchase, user_id: user.id, item_id: item.id)
   end
   describe '購入情報の保存' do
-
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@shipping_purchase).to be_valid
@@ -16,7 +15,7 @@ RSpec.describe ShippingPurchase, type: :model do
         @shipping_purchase.building = ''
         expect(@shipping_purchase).to be_valid
       end
-      it "tokenがあれば保存ができること" do
+      it 'tokenがあれば保存ができること' do
         expect(@shipping_purchase).to be_valid
       end
     end
@@ -55,12 +54,12 @@ RSpec.describe ShippingPurchase, type: :model do
       it 'phone_numberが半角数字でないと保存できないこと' do
         @shipping_purchase.phone_number = '１３５６７'
         @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include("Phone number is half-width numbers")
+        expect(@shipping_purchase.errors.full_messages).to include('Phone number is half-width numbers')
       end
       it 'phone_numberが11文字まででないと保存できないこと' do
         @shipping_purchase.phone_number = '123456789012' # 12文字の数字
         @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@shipping_purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
       it 'userが紐付いていないと保存できないこと' do
         @shipping_purchase.user_id = nil
@@ -72,7 +71,7 @@ RSpec.describe ShippingPurchase, type: :model do
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include("Item can't be blank")
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @shipping_purchase.token = nil
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include("Token can't be blank")
