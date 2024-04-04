@@ -5,6 +5,7 @@ RSpec.describe ShippingPurchase, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @shipping_purchase = FactoryBot.build(:shipping_purchase, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
   describe '購入情報の保存' do
     context '内容に問題ない場合' do
@@ -39,12 +40,12 @@ RSpec.describe ShippingPurchase, type: :model do
       it 'cityが空だと保存できないこと' do
         @shipping_purchase.city = ''
         @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include("city can't be blank")
+        expect(@shipping_purchase.errors.full_messages).to include("City can't be blank")
       end
       it 'addressesが空だと保存できないこと' do
         @shipping_purchase.addresses = ''
         @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include("addresses can't be blank")
+        expect(@shipping_purchase.errors.full_messages).to include("Addresses can't be blank")
       end
       it 'phone_numberが空だと保存できないこと' do
         @shipping_purchase.phone_number = ''
@@ -52,12 +53,12 @@ RSpec.describe ShippingPurchase, type: :model do
         expect(@shipping_purchase.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが半角数字でないと保存できないこと' do
-        @shipping_purchase.phone_number = '１３５６７'
+        @shipping_purchase.phone_number = '１３５６７４８'
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include('Phone number is half-width numbers')
       end
       it 'phone_numberが11文字まででないと保存できないこと' do
-        @shipping_purchase.phone_number = '123456789012' # 12文字の数字
+        @shipping_purchase.phone_number = '123456789012' 
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
