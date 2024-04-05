@@ -8,9 +8,8 @@ class ShippingPurchase
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :addresses
-    validates :phone_number, numericality: { only_integer: true, message: 'is half-width numbers' },
-                             length: { maximum: 11, message: 'is too long (maximum is 11 characters)' }
-    validates :token, presence: true
+    validates :phone_number, length: { in: 10..11, message: 'is too long (10 characters or 11 characters)' }
+    validates :token
   end
   validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }
 

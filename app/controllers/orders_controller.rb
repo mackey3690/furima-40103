@@ -1,16 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_public_key, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     redirect_to root_path unless current_user.id != @item.user.id && @item.purchase.nil?
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @shipping_purchase = ShippingPurchase.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @shipping_purchase = ShippingPurchase.new(order_params)
     if @shipping_purchase.valid?
       pay_item
@@ -23,6 +22,9 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:item_id])
 
   def order_params
     params.require(:shipping_purchase).permit(:postal_code, :prefecture, :city, :addresses, :building, :phone_number)

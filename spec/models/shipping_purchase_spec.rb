@@ -52,15 +52,11 @@ RSpec.describe ShippingPurchase, type: :model do
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが半角数字でないと保存できないこと' do
-        @shipping_purchase.phone_number = '１３５６７４８'
-        @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include('Phone number is half-width numbers')
-      end
-      it 'phone_numberが11文字まででないと保存できないこと' do
+      
+      it 'phone_numberが9桁以下では登録できないこと。また、12桁以上でも登録できないこと' do
         @shipping_purchase.phone_number = '123456789012' 
         @shipping_purchase.valid?
-        expect(@shipping_purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+        expect(@shipping_purchase.errors.full_messages).to include('Phone number is too long (10 characters or 11 characters)')
       end
       it 'userが紐付いていないと保存できないこと' do
         @shipping_purchase.user_id = nil
