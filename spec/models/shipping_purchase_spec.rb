@@ -52,6 +52,11 @@ RSpec.describe ShippingPurchase, type: :model do
         @shipping_purchase.valid?
         expect(@shipping_purchase.errors.full_messages).to include("Phone number can't be blank")
       end
+      it 'phone_numberが数字以外だと保存できないこと' do
+        @shipping_purchase.phone_number = 'abcdehsjte'
+        @shipping_purchase.valid?
+        expect(@shipping_purchase.errors.full_messages).to include("Phone number must be number")
+      end
       it 'phone_numberが9桁以下だと登録できないこと' do
         @shipping_purchase.phone_number = '123456798' 
         @shipping_purchase.valid?
