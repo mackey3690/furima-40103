@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
 
   def order_params
     params.require(:shipping_purchase).permit(:postal_code, :prefecture, :city, :addresses, :building, :phone_number)
