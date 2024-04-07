@@ -8,8 +8,8 @@ class ShippingPurchase
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :addresses
-    validates :phone_number, length: { minimum: 10, message: "is too short (minimum is 10 characters)" }
-    validates :phone_number, length: { maximum: 11, message: "is too long (maximum is 11 characters)" },
+    validates :phone_number, length: { minimum: 10, message: "is too short (minimum is 10 characters)" },
+                             length: { maximum: 11, message: "is too long (maximum is 11 characters)" },
                              format: { with: /\A\d+\z/, message: "must be number" }
     validates :token
   end
